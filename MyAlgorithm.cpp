@@ -1,9 +1,12 @@
 #include <string>
 #include <vector>
 
+//need to grab the info
+#include "MyAlgorithm.h"
+
 //Ok Im solving for my speed and I lied this is Knuth-Morris-Pratt
 
-std::vector<int> FindingDiff(std::string str1, std::string str2)
+std::vector<int> MyAlgorithm(const std::string& str1, const std::string& str2)
 {
     //output
     std::vector<int> output;
