@@ -1,27 +1,83 @@
-
-#include <map>
-#include <numeric>
-#include <tuple>
+#include <string>
+#include <vector>
 
 //Ok Im solving for my speed and I lied this is Knuth-Morris-Pratt
 
-String FindingDiff(String str1, String str2)
+std::vector<int> FindingDiff(std::string str1, std::string str2)
 {
-    //So I want to have a integer count of the two strings when going through
-    int count = 0;
-    int count2 = 0;
-
-    while (str1.length() > 0 && str2.length() > 0)
+    //output
+    std::vector<int> output;
+    
+    if(str2.length() <= 1)
     {
-        if (str1[count] == str2[count2])
+        //we first do the 0 but its hidden in here so not a extra if
+        if(str2.length() == 0)
         {
-            //we just move on
-            count ++;
-            count2++;
-            break;
+            return output;
         }
-        //this will be the as diff was found we loop till we find another pattern 
-        else if ()
+        else{
+            for(int count =0; count < str1.length(); count++)
+            {
+                if(str1[count] == str2[0])
+                {
+                    //just pushback  this code breaks on pattern length 1 
+                    output.push_back(count);
+                }
+            }
+            return output;
+        }
     }
 
+
+
+
+
+   //So I want as we are finding the pattern
+
+   //remembering a few weeks ago I want to start from every value if need be 
+   //but Im trying to do in one loop
+   //so two values
+   //int countPattern = 0;
+    //Ima use a stack //changed to vector
+    //we dont need a tuple as we can just - from the current position
+    std::vector<int> matches;
+
+    //we will imagine test data as aaaaaaaaaaaa aaaaaa for the idea of there is multiple
+   for(int count =0; count < str1.length(); count++)
+    {
+        //Now if pattern and this equal we say yippy
+        if (!matches.empty())
+        {
+            for (int i = 0; i < matches.size(); i++)
+            {   
+                if (str1[count] == str2[matches[i]])
+                {   
+                    matches[i]++;
+                    if(matches[i] == str2.length())
+                    {
+                        output.push_back(count - str2.length() + 1);
+                        matches.erase(matches.begin() + i);
+                        //as we deleted it we dont want to move it forward technically on the next run
+                        i--;
+                    }
+                    
+                    
+                }
+                else
+                {
+                    matches.erase(matches.begin() + i);
+                    i--;
+                }
+            }
+        }
+
+        //we do this last first we try go through all Do want it to be a tuple so I can record the placement its in
+        if(str1[count] == str2[0])
+        {
+            //just pushback  this code breaks on pattern length 1 
+            matches.push_back(1);
+        }
+        
+    }
+    return output;
 }
