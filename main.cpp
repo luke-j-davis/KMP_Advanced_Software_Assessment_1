@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <windows.h>
 #include <psapi.h>
+#include <fstream>
 
 
 #include "KMP.h"
@@ -125,6 +126,14 @@ int main()
 {
    std::vector<TestCase> tests = getTestCases();
 
+
+   //want to save the results somewhere
+   std::ofstream outputFile("results.csv");
+
+    outputFile << "Test,TextLength,PatternLength,"
+               << "KMPTime,KMPMemory,NaiveTime,NaiveMemory,"
+               << "TimeDifference,MemoryDifference,Correct\n";
+
     for (const TestCase& test : tests)
     {
         TestResult result = runTheTests(
@@ -161,8 +170,22 @@ int main()
 
         std::cout << "Memory difference: "
                   << result.memoryDiff / 1024.0 << " KB\n";
-    }
 
+
+        //also put result into the file 
+        outputFile << test.name << ","
+                   << test.text.length() << ","
+                   << test.pattern.length() << ","
+                   << result.kmpTime << ","
+                   << result.kmpMemory / 1024.0 << ","
+                   << result.naiveTime << ","
+                   << result.naiveMemory / 1024.0 << ","
+                   << result.timeDiff << ","
+                   << result.memoryDiff / 1024.0 << ","
+                   << (result.correct ? "YES" : "NO")
+                   << "\n";
+    }
+    outputFile.close();
     return 0;
 
 }
