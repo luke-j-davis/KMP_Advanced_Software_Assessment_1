@@ -42,9 +42,7 @@ struct TestResult
     double kmpTime;
     double myTime;
 
-    bool kmpCorrect;
-    bool naiveCorrect;
-    bool myCorrect;
+    bool correct;
 
     long long naiveMemoryDiff;
     long long myMemoryDiff;
@@ -173,7 +171,7 @@ int main()
                << "MyTime,MyMemory,"
                << "NaiveTimeDifference,MyTimeDifference,"
                << "NaiveMemoryDifference,MyMemoryDifference,"
-               << "KMPCorrect,NaiveCorrect,MyCorrect\n";
+               << "Correct\n";
 
 
     for (const TestCase& test : tests)
@@ -250,17 +248,9 @@ int main()
 
         std::cout << "\nCorrectness:\n";
 
-        std::cout << "  KMP: "
-                  << (result.kmpCorrect ? "YES" : "NO")
-                  << "\n";
-
-        std::cout << "  Naive: "
-                  << (result.naiveCorrect ? "YES" : "NO")
-                  << "\n";
-
-        std::cout << "  MyAlgorithm: "
-                  << (result.myCorrect ? "YES" : "NO")
-                  << "\n";
+        std::cout << "\nCorrect: "
+          << (result.correct ? "YES" : "NO")
+          << "\n";
 
 
         // ----------------------------------------------
@@ -316,9 +306,7 @@ int main()
                    << result.naiveMemoryDiff / 1024.0 << ","
                    << result.myMemoryDiff / 1024.0 << ","
 
-                   << (result.kmpCorrect ? "YES" : "NO") << ","
-                   << (result.naiveCorrect ? "YES" : "NO") << ","
-                   << (result.myCorrect ? "YES" : "NO")
+                   << (result.correct ? "YES" : "NO")
 
                    << "\n";
     }
