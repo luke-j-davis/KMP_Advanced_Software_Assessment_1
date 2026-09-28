@@ -10,7 +10,7 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
 
     // Build LPS (Longest Prefix Suffix) array
     std::vector<int> lps(pattern.length(), 0);
-
+//current length of the common prefix between start and current point
     int length = 0;
 
     //start from  as first =0
@@ -36,6 +36,10 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
         }
     }
 
+    //if ABCABCAAB
+    //   000123110
+
+
     // KMP search
     int countText = 0; // position in text
     int countPattern = 0; // position in pattern
@@ -47,7 +51,7 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
             countText++;
             countPattern++;
 
-            // Found the pattern
+            // The pattern was found and ended
             if (countPattern == pattern.length())
             {
                 result.push_back(countText - countPattern );
