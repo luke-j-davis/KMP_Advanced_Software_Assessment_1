@@ -13,8 +13,10 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
 
     int length = 0;
 
+    //start from  as first =0
     for (int i = 1; i < pattern.length();)
     {
+        //
         if (pattern[i] == pattern[length])
         {
             length++;
@@ -33,32 +35,32 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
     }
 
     // KMP search
-    int i = 0; // position in text
-    int j = 0; // position in pattern
+    int countText = 0; // position in text
+    int countPattern = 0; // position in pattern
 
-    while (i < text.length())
+    while (countText < text.length())
     {
-        if (text[i] == pattern[j])
+        if (text[countText] == pattern[countPattern ])
         {
-            i++;
-            j++;
+            countText++;
+            countPattern++;
 
             // Found the pattern
             if (j == pattern.length())
             {
-                result.push_back(i - j);
+                result.push_back(countText - countPattern );
 
                 // Continue searching for overlapping matches
-                j = lps[j - 1];
+                countPattern  = lps[countPattern - 1];
             }
         }
-        else if (j != 0)
+        else if (countPattern  != 0)
         {
-            j = lps[j - 1];
+            countPattern  = lps[countPattern  - 1];
         }
         else
         {
-            i++;
+            countText++;
         }
     }
 
