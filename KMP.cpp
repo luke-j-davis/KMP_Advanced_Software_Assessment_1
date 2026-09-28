@@ -16,13 +16,15 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
     //start from  as first =0
     for (int i = 1; i < pattern.length();)
     {
-        //
+        //we are comparing the current value against eachother and if match extend 
+        //imagine you have two parts the start and where your at
         if (pattern[i] == pattern[length])
         {
             length++;
             lps[i] = length;
             i++;
         }
+        //when mismatch cause of previous if statement 
         else if (length != 0)
         {
             length = lps[length - 1];
@@ -46,7 +48,7 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
             countPattern++;
 
             // Found the pattern
-            if (j == pattern.length())
+            if (countPattern == pattern.length())
             {
                 result.push_back(countText - countPattern );
 
