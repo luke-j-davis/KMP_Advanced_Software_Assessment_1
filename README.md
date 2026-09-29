@@ -16,10 +16,10 @@ The program is split into three different algorithms:
 
 ### Compile
 
-From the project directory, run:
+From the project directory, run: This is to get all the files properly connected.
 
 ```bash
-g++ main.cpp KMP.cpp MyAlgorithm.cpp Tests.cpp -o program
+g++ main.cpp KMP.cpp MyAlgorithm.cpp Naive.cpp Tests.cpp -o program
 ```
 
 ### Run
