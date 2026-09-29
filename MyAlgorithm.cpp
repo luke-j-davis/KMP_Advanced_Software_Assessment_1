@@ -4,7 +4,7 @@
 //need to grab the info
 #include "MyAlgorithm.h"
 
-//Ok Im solving for my speed and I lied this is Knuth-Morris-Pratt
+//Ok Im solving for my speed and I lied this is Knuth-Morris-Pratt //Nvm I misunderstood KMP
 
 std::vector<int> MyAlgorithm(const std::string& str1, const std::string& str2)
 {
@@ -30,11 +30,6 @@ std::vector<int> MyAlgorithm(const std::string& str1, const std::string& str2)
             return output;
         }
     }
-
-
-
-
-
    //So I want as we are finding the pattern
 
    //remembering a few weeks ago I want to start from every value if need be 

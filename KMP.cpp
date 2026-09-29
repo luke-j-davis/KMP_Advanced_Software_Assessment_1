@@ -14,15 +14,15 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
     int length = 0;
 
     //start from  as first =0
-    for (int i = 1; i < pattern.length();)
+    for (int current = 1; current < pattern.length();)
     {
         //we are comparing the current value against eachother and if match extend 
         //imagine you have two parts the start and where your at
-        if (pattern[i] == pattern[length])
+        if (pattern[current] == pattern[length])
         {
             length++;
-            lps[i] = length;
-            i++;
+            lps[current] = length;
+            current++;
         }
         //when mismatch cause of previous if statement 
         else if (length != 0)
@@ -31,13 +31,13 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
         }
         else
         {
-            lps[i] = 0;
-            i++;
+            lps[current] = 0;
+            current++;
         }
     }
 
-    //if ABCABCAAB
-    //   000123110
+    //if       ABCABCAAB
+    //output   000123110
 
 
     // KMP search
@@ -58,8 +58,17 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern)
 
                 // Continue searching for overlapping matches
                 countPattern  = lps[countPattern - 1];
+
+                //word AAA
+                //pattern AA
+
             }
         }
+        //mismatch if some charcters were already matched 
+        //word:   ABCABCABD
+        //pattern ABCABD
+        //LPS[4] = 2
+
         else if (countPattern  != 0)
         {
             countPattern  = lps[countPattern  - 1];

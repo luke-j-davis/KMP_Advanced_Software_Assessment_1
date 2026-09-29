@@ -54,9 +54,8 @@ struct TestResult
 TestResult runTheTests(const string& testName, const string& text, const string& pattern)
 {
 
-// ==============================================
     // KMP
-    // ==============================================
+
 
     size_t memoryBeforeKMP = getMemoryUsage();
 
@@ -282,10 +281,7 @@ int main()
                   << result.myMemoryDiff / 1024.0
                   << " KB\n";
 
-
-        // ==============================================
         // Save to CSV
-        // ==============================================
 
         outputFile << test.name << ","
                    << test.text.length() << ","
