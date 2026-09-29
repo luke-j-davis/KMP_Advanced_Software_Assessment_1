@@ -34,3 +34,10 @@ The program runs the test cases for all three algorithms and records the results
 ### The Comparison
 
 It is being compared on memory and Speed.
+
+
+### file for video and pdf
+I set it to viewer as this is public repo so don't want someone being able to edit and take
+https://docs.google.com/document/d/16bnMt19SO2MRlxjAnbe8NX8AEH6_dyaiT-vXEtkfixs/edit?usp=sharing
+
+https://youtu.be/ecwckKqkrII
